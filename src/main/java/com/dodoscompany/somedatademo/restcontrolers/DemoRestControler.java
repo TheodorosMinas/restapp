@@ -2,11 +2,12 @@ package com.dodoscompany.somedatademo.restcontrolers;
 
 import com.dodoscompany.somedatademo.DAO.StudentDao;
 import com.dodoscompany.somedatademo.entities.Student;
-import com.dodoscompany.somedatademo.exceptions.StudentErrorResponse;
 import com.dodoscompany.somedatademo.exceptions.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,14 +16,7 @@ import java.util.List;
 public class DemoRestControler {
     private StudentDao studentDao;
 
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException e) {
-        StudentErrorResponse error = new StudentErrorResponse();
-        error.setStatus(400);
-        error.setMessage(e.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
-        return new ResponseEntity<>(error, org.springframework.http.HttpStatus.BAD_REQUEST);
-    }
+
 
     @Autowired
     public DemoRestControler(StudentDao studentDao) {
@@ -31,11 +25,19 @@ public class DemoRestControler {
 
     @GetMapping("/students")
     public List<Student> students(){
+        List<Student> students = studentDao.findAll();
+        if (students.isEmpty()) {
+            throw new StudentNotFoundException("Students not found");
+        }
         return studentDao.findAll();
     }
 
     @GetMapping("/student/{id}")
     public Student student(@PathVariable int id){
+        Student student = studentDao.findByID(id);
+        if(student == null){
+            throw new StudentNotFoundException("Student not found - " + id);
+        }
         return studentDao.findByID(id);
     }
 

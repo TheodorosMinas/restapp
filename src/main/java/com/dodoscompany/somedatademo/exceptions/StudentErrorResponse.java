@@ -3,18 +3,18 @@ package com.dodoscompany.somedatademo.exceptions;
 public class StudentErrorResponse {
     private int status;
     private String message;
-    private long timeStamp;
+    private String timeStamp;
 
 
 
     public StudentErrorResponse() {
     }
 
-    public long getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 
