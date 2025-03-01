@@ -29,6 +29,9 @@ public class Employee {
         this.lastName = lastName;
         this.email = email;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setEmail(String email) {
         this.email = email;

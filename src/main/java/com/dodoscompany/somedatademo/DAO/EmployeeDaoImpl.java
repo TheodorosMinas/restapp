@@ -22,8 +22,8 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
     @Override
     @Transactional
-    public void saveEmployee(Employee employee) {
-        entityManager.persist(employee);
+    public Employee saveEmployee(Employee employee) {
+      return   entityManager.merge(employee);
     }
 
     @Override
