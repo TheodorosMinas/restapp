@@ -8,9 +8,32 @@
 <body>
 <form th:action="@{/customerWelcome}"th:object="${customer}" method="POST" >
     First Name :<input type="text" th:field="*{fname}" placeholder="Enter your name" />
+    <div th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></div>
     <br>
     Last Name  :<input type="text" th:field="*{lname}" placeholder="Enter your last name" />
     <br>
+    Age   :<input type="text" th:field="*{age}" placeholder="Enter your age" />
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+    <br>
+    email   :<input type="text" th:field="*{email}" placeholder="Enter your age" />
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    <br>
+
+
+    <br>
+    Country:
+    <select th:field="*{country}">
+        <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
+    </select>
+    <br>
+    <div th:each="plang : ${plangs}">
+        <input type="radio" th:field="*{plang}" th:value="${plang}" /> <span th:text="${plang}"></span>
+    </div>
+    <br><br>
+    <div th:each="operatingSystem : ${operatingSystems}">
+        <input type="checkbox" th:field="*{operatingSystems}" th:value="${operatingSystem}" /> <span th:text="${operatingSystem}"></span>
+    </div>
+
     <input type="submit" value="Submit" />
 </form>
 

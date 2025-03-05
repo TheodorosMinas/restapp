@@ -35,7 +35,7 @@ public class DemoSecurityConfig {
 //                .build();
 //
 //        return new InMemoryUserDetailsManager(user1, user2, user3);
-//    }
+//    }/dodos
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -43,6 +43,10 @@ public class DemoSecurityConfig {
                 configurer
                         .requestMatchers(HttpMethod.GET, "/emplApi/employees").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST, "/processForm").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/dodos/employees").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/dodos/deleteEmployee").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/dodos/addingEmployee").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/dodos/addEmployee").permitAll()
                         .requestMatchers(HttpMethod.GET, "/hello").permitAll()
                         .requestMatchers(HttpMethod.POST, "/customerWelcome").permitAll()
                         .requestMatchers(HttpMethod.GET, "/customerLogin").permitAll()
