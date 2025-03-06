@@ -46,6 +46,8 @@ public class DemoSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/dodos/employees").permitAll()
                         .requestMatchers(HttpMethod.POST, "/dodos/deleteEmployee").permitAll()
                         .requestMatchers(HttpMethod.POST, "/dodos/addingEmployee").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/dodos/updateForm").permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/dodos/addEmployee").permitAll()
                         .requestMatchers(HttpMethod.GET, "/hello").permitAll()
                         .requestMatchers(HttpMethod.POST, "/customerWelcome").permitAll()

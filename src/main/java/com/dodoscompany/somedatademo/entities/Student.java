@@ -3,7 +3,7 @@ package com.dodoscompany.somedatademo.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "student_auto_create")
+@Table(name = "student")
 public class Student {
 
     @Id

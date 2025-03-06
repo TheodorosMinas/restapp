@@ -48,7 +48,8 @@ public class EmployeeControler {
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model) {
-        model.addAttribute("employee",new Employee());
+        Employee employee=new Employee();
+        model.addAttribute("employee",employee);
 
         return "addEmpl";
     }
@@ -57,6 +58,16 @@ public class EmployeeControler {
     public String addingEmployee(@ModelAttribute("employee") Employee employee) {
         System.out.println(employeeService.saveEmployee(employee));
         return "redirect:/dodos/employees";
+    }
+
+    @PostMapping("/updateForm")
+    public String updateForm(@RequestParam("id") int id, Model model) {
+
+        Employee employee = employeeService.findById(id);
+        System.out.println(employee);
+        employeeService.saveEmployee(employee);
+        model.addAttribute("employee", employee);
+        return "addEmpl";
     }
 }
 

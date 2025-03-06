@@ -11,16 +11,17 @@
 <form th:action="@{/dodos/addingEmployee}" th:object="${employee}" method="post">
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
-        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Enter first name">
+        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" th:attr="placeholder=*{firstName}">
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Enter last name">
+        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" th:attr="placeholder=*{lastName}">
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Enter email">
+        <input type="email" th:field="*{email}" class="form-control" id="email" th:attr="placeholder=*{email}">
     </div>
+    <input type="hidden" name="id" th:value="${employee.id}" />
     <button type="submit" class="btn btn-primary">Add Employee</button>
 </form>
 </body>
